@@ -1,0 +1,775 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter/services.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+
+void main() {
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: 'Navigation Basics',
+    home: MyApp(),
+  ));
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          },
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
+      home: AnimatedSplashScreen(
+        splash: Image.asset('assets/asmlogore.png'),
+        splashIconSize: 300,
+        nextScreen: const Route1(),
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: Colors.white,
+        //duration: 3000,
+      ),
+    );
+  }
+}
+
+class Route1 extends StatelessWidget {
+  const Route1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0,
+        backgroundColor: const Color(0xffffffff),
+        shadowColor: Colors.transparent,
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 75,
+                  height: 70,
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Image.asset(
+                    'assets/asmlogore.png',
+                    width: 90,
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              height: 130,
+              margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+              decoration: BoxDecoration(
+                color: const Color(0xff0d6eb8),
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(18, 18, 0, 0),
+                        child: const Text(
+                          '자산',
+                          style: TextStyle(fontFamily: 'Pretendard', fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xfff9f9f9)),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(17, 20, 0, 0),
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          color: const Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(60),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 7,
+                              offset: const Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Container(margin: const EdgeInsets.fromLTRB(0, 0, 0, 5), child: Image.asset('assets/asmpo.png')),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(10, 20, 0, 0),
+                        child: const Text(
+                          '12345',
+                          style: TextStyle(fontFamily: 'Pretendard', fontSize: 30, fontWeight: FontWeight.w500, color: Color(0xfff9f9f9)),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(8, 28, 0, 0),
+                        child: const Text(
+                          '포인트',
+                          style: TextStyle(fontFamily: 'Pretendard', fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xfff9f9f9)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Center(
+              child: Container(
+                height: 120,
+                margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                decoration: BoxDecoration(
+                  color: const Color(0xfff9f9f9),
+                  borderRadius: BorderRadius.circular(22),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.0),
+                      spreadRadius: 1,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 351,
+                      height: 45,
+                      margin: const EdgeInsets.fromLTRB(15, 0, 15, 74),
+                      decoration: BoxDecoration(
+                        color: const Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(22),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 1,
+                            blurRadius: 7,
+                            offset: const Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.fromLTRB(25, 5, 15, 15),
+                  child: const Text(
+                    '유용한 기능',
+                    style: TextStyle(fontFamily: 'Pretendard', fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff4c4c4d)),
+                  ),
+                ),
+                Container(
+                  width: 40,
+                  height: 30,
+                  margin: const EdgeInsets.fromLTRB(200, 5, 0, 15),
+                    child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Route2()),
+                    );
+                  },
+                    child: const Text(
+                      '편집',
+                      style: TextStyle(fontFamily: 'Pretendard', fontSize: 13, fontWeight: FontWeight.w500, color: Color(0xff9F9F9F)),
+                    ),
+
+                ),
+                ),
+              ],
+            ),
+            Center(
+              child: Container(
+                color: const Color(0xfff8f8f9),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 80,
+                            height: 80,
+                            margin: const EdgeInsets.fromLTRB(18, 0, 9, 15),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(22),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 80,
+                            height: 80,
+                            margin: const EdgeInsets.fromLTRB(9, 0, 9, 15),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(22),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 80,
+                            height: 80,
+                            margin: const EdgeInsets.fromLTRB(9, 0, 9, 15),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(22),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 80,
+                            height: 80,
+                            margin: const EdgeInsets.fromLTRB(9, 0, 18, 15),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(22),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 80,
+                            height: 80,
+                            margin: const EdgeInsets.fromLTRB(18, 0, 9, 15),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(22),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 80,
+                            height: 80,
+                            margin: const EdgeInsets.fromLTRB(9, 0, 9, 15),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(22),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 80,
+                            height: 80,
+                            margin: const EdgeInsets.fromLTRB(9, 0, 9, 15),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(22),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 80,
+                            height: 80,
+                            margin: const EdgeInsets.fromLTRB(9, 0, 18, 15),
+                            decoration: BoxDecoration(
+                              color: const Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(22),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 1,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Container(
+                    margin: const EdgeInsets.fromLTRB(25, 5, 15, 15),
+                    child: const Text(
+                      '추천',
+                      style: TextStyle(fontFamily: 'Pretendard', fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff4c4c4d)),
+                    )),
+              ],
+            ),
+            Container(
+              height: 90,
+              margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+              decoration: BoxDecoration(
+                color: const Color(0xffffffff),
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 1,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.home_rounded),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.food_bank_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route2()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.money_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route3()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.school_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route4()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.tag_faces_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route5()),
+              );
+            },
+          ),
+        ],
+      )),
+    );
+  }
+}
+
+class Route2 extends StatelessWidget {
+  const Route2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xfff8f8f9),
+        shadowColor: Colors.transparent,
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => const Route1()),
+            );
+          },
+          child: const Text('급식'),
+        ),
+      ),
+      backgroundColor: const Color(0xfff8f8f9),
+      bottomNavigationBar: BottomAppBar(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.home_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route1()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.food_bank_rounded),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.money_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route3()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.school_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route4()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.tag_faces_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route5()),
+              );
+            },
+          ),
+        ],
+      )),
+    );
+  }
+}
+
+class Route3 extends StatelessWidget {
+  const Route3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xfff8f8f9),
+        shadowColor: Colors.transparent,
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('포인트'),
+        ),
+      ),
+      backgroundColor: const Color(0xfff8f8f9),
+      bottomNavigationBar: BottomAppBar(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.home_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route1()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.food_bank_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route2()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.money_rounded),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.school_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route4()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.tag_faces_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route5()),
+              );
+            },
+          ),
+        ],
+      )),
+    );
+  }
+}
+
+class Route4 extends StatelessWidget {
+  const Route4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xfff8f8f9),
+        shadowColor: Colors.transparent,
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('시간표'),
+        ),
+      ),
+      backgroundColor: const Color(0xfff8f8f9),
+      bottomNavigationBar: BottomAppBar(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.home_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route1()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.food_bank_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route2()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.money_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route3()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.school_rounded),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.tag_faces_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route5()),
+              );
+            },
+          ),
+        ],
+      )),
+    );
+  }
+}
+
+class Route5 extends StatelessWidget {
+  const Route5({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xfff8f8f9),
+        shadowColor: Colors.transparent,
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('프로필'),
+        ),
+      ),
+      backgroundColor: const Color(0xfff8f8f9),
+      bottomNavigationBar: BottomAppBar(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.home_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route1()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.food_bank_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route2()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.money_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route3()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.school_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Route4()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.tag_faces_rounded),
+            onPressed: () {},
+          ),
+        ],
+      )),
+    );
+  }
+}
+
+/*ElevatedButton(
+child: Text('화면2 키기'),
+onPressed: () {
+Navigator.push(
+context,
+MaterialPageRoute(builder: (context) => SecondRoute()),
+);
+},
+),*/
+
+/*child: Container(
+height: 65,
+decoration: BoxDecoration(
+color: Colors.white,
+borderRadius: BorderRadius.only(
+topRight: Radius.circular(20,),
+topLeft: Radius.circular(20,),
+),
+),
+),*/
+
+/*Container(
+width: double.infinity,
+height: double.infinity,
+color: Color(0xffffffff),
+child: Center(
+child: Container(
+height: 160,
+margin: EdgeInsets.fromLTRB(15, 0, 15, 555),
+decoration: BoxDecoration(
+borderRadius: BorderRadius.only(
+topRight: Radius.circular(20,),
+topLeft: Radius.circular(20,),
+bottomLeft: Radius.circular(20,),
+bottomRight: Radius.circular(20,),
+),
+color: Color(0xff0d6eb8),
+),
+),
+),
+),*/
+
+/*Container(
+height: 160,
+margin: EdgeInsets.fromLTRB(15, 0, 15, 1),
+decoration: BoxDecoration(
+color: Color(0xff0d6eb8),
+borderRadius: BorderRadius.circular(22),
+boxShadow: [
+BoxShadow(
+color: Colors.grey.withOpacity(0.5),
+spreadRadius: 5,
+blurRadius: 7,
+offset: Offset(0, 3), // changes position of shadow
+),
+],
+),
+),*/
