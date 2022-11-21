@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
 
 import 'package:flutter/services.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -118,7 +119,7 @@ class Route1 extends StatelessWidget {
                       Container(
                         margin: const EdgeInsets.fromLTRB(10, 20, 0, 0),
                         child: const Text(
-                          '12345',
+                          '2400',
                           style: TextStyle(fontFamily: 'Pretendard', fontSize: 30, fontWeight: FontWeight.w500, color: Color(0xfff9f9f9)),
                         ),
                       ),
@@ -190,7 +191,7 @@ class Route1 extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Route2()),
+                      MaterialPageRoute(builder: (context) => const Route6()),
                     );
                   },
                     child: const Text(
@@ -226,7 +227,25 @@ class Route1 extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.fromLTRB(0, 13, 0, 0),
+                                  child: const Icon(
+                                         Icons.message_rounded,
+                                         size: 40,
+                                      ),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: const Text(
+                                    '커뮤니티',
+                                    style: TextStyle(fontFamily: 'Pretendard', fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xff4c4c4d)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            ),
                           Container(
                             width: 80,
                             height: 80,
@@ -240,6 +259,24 @@ class Route1 extends StatelessWidget {
                                   spreadRadius: 1,
                                   blurRadius: 7,
                                   offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.fromLTRB(0, 13, 0, 0),
+                                  child: const Icon(
+                                    Icons.newspaper_rounded,
+                                    size: 40,
+                                  ),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: const Text(
+                                    '학교 소식',
+                                    style: TextStyle(fontFamily: 'Pretendard', fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xff4c4c4d)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -257,6 +294,24 @@ class Route1 extends StatelessWidget {
                                   spreadRadius: 1,
                                   blurRadius: 7,
                                   offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.fromLTRB(0, 13, 0, 0),
+                                  child: const Icon(
+                                    Icons.newspaper_rounded,
+                                    size: 40,
+                                  ),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: const Text(
+                                    '학교 소식',
+                                    style: TextStyle(fontFamily: 'Pretendard', fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xff4c4c4d)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -404,7 +459,7 @@ class Route1 extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.money_rounded),
+            icon: const Icon(Icons.paid_rounded),
             onPressed: () {
               Navigator.push(
                 context,
@@ -422,7 +477,7 @@ class Route1 extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.tag_faces_rounded),
+            icon: const Icon(Icons.settings),
             onPressed: () {
               Navigator.push(
                 context,
@@ -711,6 +766,75 @@ class Route5 extends StatelessWidget {
           ),
         ],
       )),
+    );
+  }
+}
+
+class Route6 extends StatelessWidget {
+  const Route6({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xfff8f8f9),
+        shadowColor: Colors.transparent,
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('편집'),
+        ),
+      ),
+      backgroundColor: const Color(0xfff8f8f9),
+      bottomNavigationBar: BottomAppBar(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.home_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Route1()),
+                  );
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.food_bank_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Route2()),
+                  );
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.money_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Route3()),
+                  );
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.school_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Route4()),
+                  );
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.tag_faces_rounded),
+                onPressed: () {},
+              ),
+            ],
+          )),
     );
   }
 }
